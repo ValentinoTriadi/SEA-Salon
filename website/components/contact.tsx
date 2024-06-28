@@ -26,8 +26,8 @@ export const Contact = () => {
   ]
 
   return (
-    <div className="w-full h-fit bg-card p-20" id="contact">
-      <div className="grid grid-cols-1 md:grid-cols-3">
+    <div className="w-full h-fit bg-card p-10 md:p-20 drop-lg" id="contact">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
         {/* left */}
         <div className="flex flex-col justify-center items-start">
           <h4 className="text-3xl font-bold text-accent pb-5">Contact us</h4>
@@ -44,7 +44,7 @@ export const Contact = () => {
         </div>
 
         {/* right */}
-        <div className="flex justify-end items-start">
+        <div className="flex justify-center md:justify-end items-start">
           {socialMedia.map((social, index) => (
             <a key={index} className="flex flex-col justify-center items-center p-2" href={social.link} target="_blank" rel="noreferrer" title={social.name} aria-label={social.name} role="button" tabIndex={0} aria-hidden={true}>
               <Image src={social.image} width={50} height={50} alt={social.name} />
