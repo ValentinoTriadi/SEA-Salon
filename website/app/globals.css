@@ -5,9 +5,10 @@
   @layer base {
     :root {
       --background: #111113;
+      --background-end: #19191B;
       --foreground: #EEEEF0;
 
-      --card: rgba();
+      --card: rgba(34, 35, 37, 0.6);
       --card-foreground: #EEEEF0;
 
       --popover: #292A2E;
@@ -19,8 +20,8 @@
       --secondary: #222325;
       --secondary-foreground: #D5E2FF;
 
-      --muted: 210 40% 96.1%;
-      --muted-foreground: 215.4 16.3% 46.9%;
+      --muted: #222325;
+      --muted-foreground: #94a3b8;
 
       --accent: #3D63DD;
       --accent-foreground: #93B4FF;
@@ -30,7 +31,7 @@
 
       --border: #292A2E;
       --input: #292A2E;
-      --ring: 222.2 84% 4.9%;
+      --ring: #020817;
 
       --radius: 0.5rem;
     }
