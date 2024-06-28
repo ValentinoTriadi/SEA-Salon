@@ -26,7 +26,7 @@ export const Contact = () => {
   ]
 
   return (
-    <div className="w-full h-fit bg-card p-20" id="contact">
+    <div className="w-full h-fit bg-card p-20 drop-lg" id="contact">
       <div className="grid grid-cols-1 md:grid-cols-3">
         {/* left */}
         <div className="flex flex-col justify-center items-start">
