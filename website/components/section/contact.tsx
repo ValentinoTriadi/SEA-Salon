@@ -1,6 +1,10 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image"
 
 export const Contact = () => {
+  // Data
   const contactPerson = [
     {
       name: "Thomas",
@@ -11,7 +15,6 @@ export const Contact = () => {
       phone: "08164829372",
     },
   ]
-
   const socialMedia = [
     {
       name: "Instagram",
@@ -25,12 +28,30 @@ export const Contact = () => {
     },
   ]
 
+  // State
+  const [imageSizes, setImageSizes] = useState(30);
+  
+  // Handle resize
+  useEffect(() => {
+    const handleResize = () => {
+      setImageSizes(window.innerWidth > 768 ? 50 : 30);
+    };
+  
+    handleResize(); // Set initial value
+  
+    window.addEventListener("resize", handleResize);
+  
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+  
   return (
     <div className="w-full h-fit bg-card p-10 md:p-20 drop-lg" id="contact">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
         {/* left */}
         <div className="flex flex-col justify-center items-start">
-          <h4 className="text-3xl font-bold text-accent pb-5">Contact us</h4>
+          <h4 className="text-3xl md:text-5xl font-bold text-accent pb-5">Contact us</h4>
           {contactPerson.map((person, index) => (
             <div key={index} className="flex flex-col justify-center items-start p-2">
               <h5 className="text-lg font-bold text-primary-foreground">{person.name}</h5>
@@ -47,7 +68,7 @@ export const Contact = () => {
         <div className="flex justify-center md:justify-end items-start">
           {socialMedia.map((social, index) => (
             <a key={index} className="flex flex-col justify-center items-center p-2" href={social.link} target="_blank" rel="noreferrer" title={social.name} aria-label={social.name} role="button" tabIndex={0} aria-hidden={true}>
-              <Image src={social.image} width={50} height={50} alt={social.name} />
+              <Image src={social.image} width={imageSizes} height={imageSizes} alt={social.name} />
             </a>
           ))  
           }

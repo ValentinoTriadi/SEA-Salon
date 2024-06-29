@@ -20,9 +20,9 @@ export const Service = () => {
   ]
 
   return (
-    <div className="min-h-screen w-full flex flex-col lg:p-24 p-10 items-center justify-start" id="services">
-      <h1 className="text-5xl font-bold text-left text-primary-foreground">Services</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 justify-center items-start gap-8 mt-24 max-w-[90%]">
+    <div className="w-full flex flex-col lg:p-24 p-10 items-center justify-start" id="services">
+      <h1 className="text-5xl md:text-7xl font-bold text-left text-primary-foreground">Services</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 justify-center items-start gap-8 mt-12 md:mt-24 max-w-[95%]">
         {services.map((service, index) => (
           <div key={index} className="bg-card h-full p-8 rounded-lg flex flex-col justify-between items-center">
             <Image src={service.image} alt={service.title} width={250} height={350} loading="lazy" className="rounded-lg"/>
