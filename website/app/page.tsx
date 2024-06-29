@@ -1,8 +1,8 @@
-import { Contact } from "@/components/contact";
-import { Service } from "@/components/services";
-import { HomeComponent } from "@/components/home";
-import Image from "next/image";
-import { Navbar } from "@/components/navbar";
+import { Contact } from "@/components/section/contact";
+import { Service } from "@/components/section/services";
+import { HomeComponent } from "@/components/section/home";
+import { Navbar } from "@/components/section/navbar";
+import { Review } from "@/components/section/review";
 
 export default function Home() {
   return (
@@ -10,6 +10,7 @@ export default function Home() {
       <Navbar />
       <HomeComponent />
       <Service />
+      <Review />
       <Contact />
     </main>
   );
