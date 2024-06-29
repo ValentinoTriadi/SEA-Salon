@@ -3,6 +3,7 @@ import { Service } from "@/components/section/services";
 import { HomeComponent } from "@/components/section/home";
 import { Navbar } from "@/components/section/navbar";
 import { Review } from "@/components/section/review";
+import { Reservation } from "@/components/section/reservation";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <Navbar />
       <HomeComponent />
       <Service />
+      <Reservation />
       <Review />
       <Contact />
     </main>
