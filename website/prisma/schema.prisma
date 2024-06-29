@@ -12,3 +12,25 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum Service {
+  HAIRCUTS_AND_STYLING
+  MANICURE_AND_PEDICURE
+  FACIAL_TREATMENTS
+}
+
+model Reservation {
+  id            String   @id @default(cuid())
+  name          String
+  phone         String
+  service       Service
+  startSession  DateTime
+  endSession    DateTime   
+}
+
+model Review {
+  id            String   @id @default(cuid())
+  name          String
+  rating        Int
+  comment       String
+}
