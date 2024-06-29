@@ -10,7 +10,7 @@ export const Navbar= () => {
     const menuItems = [
         {
             title: "Services",
-            link: "#services"
+            link: "/#services"
         },
         {
             title: "Reservation",
@@ -18,11 +18,11 @@ export const Navbar= () => {
         },
         {
             title: "Review",
-            link: "#review"
+            link: "/review"
         },
         {
             title: "Contact",
-            link: "#contact"
+            link: "/#contact"
         },
     ]
 
@@ -45,7 +45,7 @@ export const Navbar= () => {
                 <a href="#home"><Image src="/logo.svg" width={20} height={20} alt="logo" /></a>
             </div>
             <div>
-                <h1 className="text-xl font-bold select-none">SEA Salon</h1>
+                <h1 className="text-xl font-semibold select-none text-accent">SEA Salon</h1>
             </div>
 
             {/* menu large */}
