@@ -1,7 +1,7 @@
 import { Contact } from "@/components/section/contact";
 import { Service } from "@/components/section/services";
 import { HomeComponent } from "@/components/section/home";
-import { Navbar } from "@/components/section/navbar";
+import { Navbar } from "@/components/navbar";
 import { Review } from "@/components/section/review";
 import { Reservation } from "@/components/section/reservation";
 
