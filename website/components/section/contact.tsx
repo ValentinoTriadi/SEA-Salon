@@ -48,7 +48,7 @@ export const Contact = () => {
   
   return (
     <div className="w-full h-fit bg-card p-10 md:p-20 drop-lg" id="contact">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         {/* left */}
         <div className="flex flex-col justify-center items-start">
           <h4 className="text-3xl md:text-5xl font-bold text-accent pb-5">Contact us</h4>
@@ -61,7 +61,7 @@ export const Contact = () => {
         </div>
 
         {/* middle */}
-        <div className="flex flex-col justify-center items-center">
+        <div className="hidden lg:flex flex-col justify-center items-center">
         </div>
 
         {/* right */}

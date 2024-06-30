@@ -19,18 +19,52 @@ enum Service {
   FACIAL_TREATMENTS
 }
 
+enum Role {
+  ADMIN
+  USER
+}
+
 model Reservation {
-  id            String   @id @default(cuid())
-  name          String
-  phone         String
-  service       Service
-  startSession  DateTime
-  endSession    DateTime   
+  id           String   @id @default(cuid())
+  name         String
+  phone        String
+  service      Service
+  startSession DateTime
+  endSession   DateTime
 }
 
 model Review {
-  id            String   @id @default(cuid())
-  name          String
-  rating        Int
-  comment       String
+  id      String  @id @default(cuid())
+  name    String?
+  rating  Int
+  comment String?
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String  @unique
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  phone     String
+  password  String
+  role      Role
+  account   Account[]
 }

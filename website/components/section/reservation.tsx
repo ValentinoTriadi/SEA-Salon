@@ -1,4 +1,3 @@
-import Image from "next/image"
 import { Button } from "../ui/button"
 import { ArrowDownIcon } from "@radix-ui/react-icons"
 import Link from "next/link"
