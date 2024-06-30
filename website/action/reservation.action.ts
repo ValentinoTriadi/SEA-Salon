@@ -1,39 +1,47 @@
-'use server'
+'use server';
 
-import { db } from '@/lib/db'
-import { reservationSchema } from '@/schema'
-import { z } from 'zod'
+import { db } from '@/lib/db';
+import { reservationSchema } from '@/schema';
+import { z } from 'zod';
 
 export const postReservation = async (
   data: z.infer<typeof reservationSchema>,
+  userId: string,
 ) => {
   try {
     // Validate fields
-    const validatedFields = reservationSchema.safeParse(data)
+    const validatedFields = reservationSchema.safeParse(data);
     if (!validatedFields.success) {
-      return { error: 'Invalid fields' }
+      return { error: 'Invalid fields' };
     }
 
-    const { name, phone, service, startSession } = validatedFields.data
-    const endSession = new Date(startSession)
-    endSession.setHours(endSession.getHours() + 1)
+    const { name, phone, service, startSession } = validatedFields.data;
+    const endSession = new Date(startSession);
+    endSession.setHours(endSession.getHours() + 1);
 
     // Create reservation
     const res = await db.reservation.create({
       data: {
         name,
+        userId,
         phone,
         service,
         startSession,
         endSession,
       },
-    })
+    });
 
-    return { success: res.startSession.toLocaleDateString() + " " + res.startSession.toLocaleTimeString(), id: res.id }
+    return {
+      success:
+        res.startSession.toLocaleDateString() +
+        ' ' +
+        res.startSession.toLocaleTimeString(),
+      id: res.id,
+    };
   } catch (error) {
-    return { error: 'Error creating reservation' }
+    return { error: 'Error creating reservation' };
   }
-}
+};
 
 export const deleteReservation = async (id: string) => {
   try {
@@ -41,9 +49,22 @@ export const deleteReservation = async (id: string) => {
       where: {
         id,
       },
-    })
-    return { success: 'Reservation deleted' }
+    });
+    return { success: 'Reservation deleted' };
   } catch (error) {
-    return { error: 'Error deleting reservation' }
+    return { error: 'Error deleting reservation' };
   }
-}
+};
+
+export const getReservationByUserId = async (userId: string) => {
+  try {
+    const reservations = await db.reservation.findMany({
+      where: {
+        userId,
+      },
+    });
+    return reservations;
+  } catch (error) {
+    return { error: 'Error fetching reservations' };
+  }
+};

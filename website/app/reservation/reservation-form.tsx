@@ -42,11 +42,12 @@ import { toast } from 'sonner';
 import { getUserById } from '@/data/user';
 
 interface Props {
+  userId: string;
   name: string;
   phone: string;
 }
 
-export const ReservationForm = ({ name, phone }: Props) => {
+export const ReservationForm = ({ userId, name, phone }: Props) => {
   // state
   const [isPending, startTransition] = useTransition();
 
@@ -83,7 +84,7 @@ export const ReservationForm = ({ name, phone }: Props) => {
   // submit handler
   function onSubmit(value: z.infer<typeof reservationSchema>) {
     startTransition(() => {
-      postReservation(value).then((data) => {
+      postReservation(value, userId).then((data) => {
         form.reset();
         if (data?.error) {
           toast.error('Error creating reservation', {
