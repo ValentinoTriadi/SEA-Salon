@@ -19,8 +19,11 @@ import { Button } from '@/components/ui/button';
 import { useTransition } from 'react';
 import { toast } from 'sonner';
 import { register } from '@/action/auth/register.action';
+import { useRouter } from 'next/navigation';
 
 export const RegisterForm = () => {
+  const router = useRouter();
+
   // State
   const [isPending, startTransition] = useTransition();
 
@@ -49,6 +52,7 @@ export const RegisterForm = () => {
         } else {
           toast.success(data.success);
         }
+        router.push('/auth/login');
       });
     });
   }

@@ -1,8 +1,11 @@
 'use server';
 
 import { db } from '@/lib/db';
-import { reservationSchema, reservationTableSchema } from '@/schema';
+import { reservationSchema } from '@/schema';
 import { z } from 'zod';
+import { getServiceDurationById, getServiceIdByName } from './service.action';
+
+const DEFAULT_DURATION = 60;
 
 export const postReservation = async (
   data: z.infer<typeof reservationSchema>,
@@ -16,8 +19,21 @@ export const postReservation = async (
     }
 
     const { name, phone, service, startSession } = validatedFields.data;
+
+    // Get service id
+    const serviceId = await getServiceIdByName(service);
+    if (!serviceId) {
+      return { error: 'Service not found' };
+    }
+
+    // Get end session
+    const serviceDuration = await getServiceDurationById(serviceId);
+    const duration = serviceDuration ?? DEFAULT_DURATION;
+    const hours = duration / 60;
+    const minutes = duration % 60;
     const endSession = new Date(startSession);
-    endSession.setHours(endSession.getHours() + 1);
+    endSession.setHours(endSession.getHours() + hours);
+    endSession.setMinutes(endSession.getMinutes() + minutes);
 
     // Create reservation
     const res = await db.reservation.create({
@@ -25,7 +41,7 @@ export const postReservation = async (
         name,
         userId,
         phone,
-        service,
+        serviceId,
         startSession,
         endSession,
       },
@@ -57,22 +73,23 @@ export const deleteReservation = async (id: string) => {
 };
 
 export const getReservationByUserId = async (userId: string) => {
-  try {
-    const reservations = await db.reservation.findMany({
-      select: {
-        id: true,
-        name: true,
-        phone: true,
-        service: true,
-        startSession: true,
-        endSession: true,
+  const reservations = await db.reservation.findMany({
+    select: {
+      id: true,
+      name: true,
+      phone: true,
+      startSession: true,
+      endSession: true,
+      service: {
+        select: {
+          name: true,
+        },
       },
-      where: {
-        userId,
-      },
-    });
-    return reservations as z.infer<typeof reservationTableSchema>[];
-  } catch (error) {
-    return { error: 'Error fetching reservations' };
-  }
+    },
+    where: {
+      userId,
+    },
+  });
+
+  return reservations;
 };

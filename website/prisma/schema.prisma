@@ -13,12 +13,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Service {
-  HAIRCUTS_AND_STYLING
-  MANICURE_AND_PEDICURE
-  FACIAL_TREATMENTS
-}
-
 enum Role {
   ADMIN
   USER
@@ -29,10 +23,11 @@ model Reservation {
   userId       String
   name         String
   phone        String
-  service      Service
+  serviceId    String
   startSession DateTime
   endSession   DateTime
 
+  service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
@@ -50,5 +45,14 @@ model User {
   phone       String
   password    String
   role        Role
+  Reservation Reservation[]
+}
+
+model Service {
+  id          String  @id @default(cuid())
+  name        String
+  description String?
+  duration    Int
+  image       String?
   Reservation Reservation[]
 }

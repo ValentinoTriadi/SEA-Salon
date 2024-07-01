@@ -1,4 +1,3 @@
-import { Service } from '@prisma/client';
 import { z } from 'zod';
 
 export const loginSchema = z.object({
@@ -29,11 +28,7 @@ export const reservationSchema = z.object({
     .string()
     .min(10, { message: 'Phone number is not valid' })
     .regex(/^\+?\d+$/, 'Phone number is not valid'),
-  service: z.enum([
-    Service.FACIAL_TREATMENTS,
-    Service.HAIRCUTS_AND_STYLING,
-    Service.MANICURE_AND_PEDICURE,
-  ]),
+  service: z.string(),
   startSession: z
     .date()
     .refine((date) => date > new Date(), {
@@ -47,7 +42,7 @@ export const reservationSchema = z.object({
 export const reservationTableSchema = reservationSchema.extend({
   id: z.string(),
   endSession: z.date(),
-})
+});
 
 export const reviewSchema = z.object({
   name: z.string(),
@@ -56,4 +51,15 @@ export const reviewSchema = z.object({
     return intValue >= 1 && intValue <= 5;
   }, ''),
   comment: z.string().max(500),
+});
+
+export const serviceSchema = z.object({
+  name: z.string(),
+  duration: z.coerce.number().int().min(1),
+  description: z.string().nullable(),
+  image: z.string().nullable(),
+});
+
+export const serviceTableSchema = serviceSchema.extend({
+  id: z.string(),
 });

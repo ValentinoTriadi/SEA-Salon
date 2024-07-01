@@ -1,7 +1,6 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Service } from '@prisma/client';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { format } from 'date-fns';
@@ -32,22 +31,22 @@ import {
 import { CalendarIcon } from '@radix-ui/react-icons';
 import { Calendar } from '@/components/ui/calendar';
 import { cn } from '@/lib/utils';
-import { useEffect, useState, useTransition } from 'react';
+import { useTransition } from 'react';
 import {
   deleteReservation,
   postReservation,
 } from '@/action/reservation.action';
 import { reservationSchema } from '@/schema';
 import { toast } from 'sonner';
-import { getUserById } from '@/data/user';
 
 interface Props {
   userId: string;
   name: string;
   phone: string;
+  services: string[];
 }
 
-export const ReservationForm = ({ userId, name, phone }: Props) => {
+export const ReservationForm = ({ userId, name, phone, services }: Props) => {
   // state
   const [isPending, startTransition] = useTransition();
 
@@ -57,7 +56,7 @@ export const ReservationForm = ({ userId, name, phone }: Props) => {
     defaultValues: {
       name: name,
       phone: phone,
-      service: Service.HAIRCUTS_AND_STYLING,
+      service: services[0] ?? '',
       startSession: new Date(),
     },
   });
@@ -169,9 +168,9 @@ export const ReservationForm = ({ userId, name, phone }: Props) => {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {Object.values(Service).map((s, index) => (
+                  {services.map((s, index) => (
                     <SelectItem value={s} key={index}>
-                      {s.replaceAll('_', ' ').toLowerCase()}
+                      {s}
                     </SelectItem>
                   ))}
                 </SelectContent>

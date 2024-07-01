@@ -34,12 +34,14 @@ import Link from 'next/link';
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  listFilter: string[];
   href?: string;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  listFilter,
   href,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
@@ -82,23 +84,21 @@ export function DataTable<TData, TValue>({
             <SelectValue placeholder='Filter Service' />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value={'FACIAL_TREATMENTS'}>
-              FACIAL TREATMENTS
-            </SelectItem>
-            <SelectItem value={'HAIRCUTS_AND_STYLING'}>
-              HAIRCUTS AND STYLING
-            </SelectItem>
-            <SelectItem value={'MANICURE_AND_PEDICURE'}>
-              MANICURE AND PEDICURE
-            </SelectItem>
+            {listFilter.map((s, index) => (
+              <SelectItem value={s} key={index}>
+                {s}
+              </SelectItem>
+            ))}
             <SelectItem value={'_'}>Clear Filter</SelectItem>
           </SelectContent>
         </Select>
-        {href && <Button variant='outline' className='aspect-square border-0'>
-          <Link href={href}>
-            <PlusIcon className='w-4 h-4' />
-          </Link>
-        </Button>}
+        {href && (
+          <Button variant='outline' className='aspect-square border-0'>
+            <Link href={href}>
+              <PlusIcon className='w-4 h-4' />
+            </Link>
+          </Button>
+        )}
       </div>
       <div className='rounded-md border mt-2'>
         <Table>
