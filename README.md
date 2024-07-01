@@ -64,7 +64,6 @@
 ## About The Project
 
 <img src="website/public/image.png">
-## About The Project
 
 This project is a web-based application designed to efficiently manage salon operations. It serves as the final project for the Software Engineering Academy, showcasing the practical application of software engineering principles in a real-world scenario.
 
@@ -137,7 +136,7 @@ This project is a web-based application designed to efficiently manage salon ope
 
 ## Deployment
 
-Application is deployed on Vercel on ```https://sea-salon-theta.vercel.app/```
+Application is deployed on Vercel on [```https://sea-salon-theta.vercel.app/```](https://sea-salon-theta.vercel.app/)
 
 
 <!-- PROJECT STATUS -->
@@ -175,7 +174,7 @@ Project status: _complete_
 [Next-Auth]: https://img.shields.io/badge/next%20auth-000000?style=for-the-badge
 [Prisma]: https://img.shields.io/badge/Prisma-000000?style=for-the-badge&logo=Prisma&logoColor=white
 [Neon]: https://img.shields.io/badge/neon.tech-000000?style=for-the-badge
-[PostgreSQL]: https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white
+[PostgreSQL]: https://img.shields.io/badge/postgres-000000?style=for-the-badge&logo=postgresql&logoColor=white
 [Tailwind]: https://img.shields.io/badge/tailwind-000000?style=for-the-badge&logo=tailwindcss&logoColor=white
 [linkedin-shield-valen]: https://img.shields.io/badge/Linkedin-Valentino%20Triadi-000000?style=for-the-badge&logo=linkedin&logoColor=white
 [linkedin-valen]: https://linkedin.com/in/valentino-triadi
