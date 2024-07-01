@@ -89,6 +89,8 @@ This project is a web-based application designed to efficiently manage salon ope
 
 * SEA Salon Information
 * Reservation for Salon Services
+* User Reviews
+* User Dashboard
 * Service Management
 * Authentication
 * Middleware for Authentication
@@ -137,6 +139,8 @@ This project is a web-based application designed to efficiently manage salon ope
 ## Deployment
 
 Application is deployed on Vercel on [```https://sea-salon-theta.vercel.app/```](https://sea-salon-theta.vercel.app/)
+<br/>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- PROJECT STATUS -->
@@ -151,6 +155,13 @@ Project status: _complete_
 - Add Level 5
 <br/>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Admin Credentials
+- Email: thomas.n@compfest.id
+- Password: Admin123
+<br/>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
