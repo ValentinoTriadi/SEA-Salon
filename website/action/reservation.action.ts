@@ -1,7 +1,7 @@
 'use server';
 
 import { db } from '@/lib/db';
-import { reservationSchema } from '@/schema';
+import { reservationSchema, reservationTableSchema } from '@/schema';
 import { z } from 'zod';
 
 export const postReservation = async (
@@ -59,11 +59,19 @@ export const deleteReservation = async (id: string) => {
 export const getReservationByUserId = async (userId: string) => {
   try {
     const reservations = await db.reservation.findMany({
+      select: {
+        id: true,
+        name: true,
+        phone: true,
+        service: true,
+        startSession: true,
+        endSession: true,
+      },
       where: {
         userId,
       },
     });
-    return reservations;
+    return reservations as z.infer<typeof reservationTableSchema>[];
   } catch (error) {
     return { error: 'Error fetching reservations' };
   }

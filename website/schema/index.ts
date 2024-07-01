@@ -44,6 +44,11 @@ export const reservationSchema = z.object({
     }),
 });
 
+export const reservationTableSchema = reservationSchema.extend({
+  id: z.string(),
+  endSession: z.date(),
+})
+
 export const reviewSchema = z.object({
   name: z.string(),
   rating: z.string().refine((value) => {
