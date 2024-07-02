@@ -95,7 +95,7 @@ This project is a web-based application designed to efficiently manage salon ope
   * Reservation History
 * Admin Dashboard
   * Service Management
-  * Branch Management
+  * Branch Management (Integrated with Services)
 * Authentication
 * Middleware for Authentication
 

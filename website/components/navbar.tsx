@@ -76,7 +76,7 @@ export const Navbar = ({ isLogin }: NavbarProps) => {
 
   return (
     <nav
-      className={`flex fixed top-0 w-dvw justify-between items-center drop-shadow-xl md:px-10 px-4 py-2 ${scrolled ? 'bg-secondary' : ''}`}
+      className={`flex fixed top-0 w-dvw justify-between items-center drop-shadow-xl md:px-10 px-4 py-2 ${scrolled ? 'bg-secondary' : 'bg-gray-950 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20'}`}
     >
       {/* Left */}
       <div className='flex justify-center items-center'>
@@ -129,7 +129,7 @@ export const Navbar = ({ isLogin }: NavbarProps) => {
           <DropdownMenuTrigger>
             <Image src={'/menu.svg'} width={25} height={25} alt='menu' />
           </DropdownMenuTrigger>
-          <DropdownMenuContent>
+          <DropdownMenuContent className='mx-2'>
             {/* Push Menu and Map */}
             {menuItems.map((item, index) => (
               <DropdownMenuItem
