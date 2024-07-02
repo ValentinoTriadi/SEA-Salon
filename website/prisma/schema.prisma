@@ -12,3 +12,57 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum Role {
+  ADMIN
+  USER
+}
+
+model Reservation {
+  id           String   @id @default(cuid())
+  userId       String
+  name         String
+  phone        String
+  serviceId    String
+  startSession DateTime
+  endSession   DateTime
+
+  service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Review {
+  id      String  @id @default(cuid())
+  name    String?
+  rating  Int
+  comment String?
+}
+
+model User {
+  id          String        @id @default(cuid())
+  name        String
+  email       String        @unique
+  phone       String
+  password    String
+  role        Role
+  Reservation Reservation[]
+}
+
+model Service {
+  id          String        @id @default(cuid())
+  name        String
+  description String?
+  duration    Int
+  image       String?
+  Reservation Reservation[]
+  Branch      Branch[]      @relation("Branch_Service")
+}
+
+model Branch {
+  id       String    @id @default(cuid())
+  name     String
+  location String
+  opening  Int
+  closing  Int
+  Service  Service[] @relation("Branch_Service")
+}
