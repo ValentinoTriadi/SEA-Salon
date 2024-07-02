@@ -91,8 +91,7 @@ export const AdminBranchForm = ({ serviceData }: AdminBranchFormProps) => {
               },
             },
           });
-          form.reset();
-          setServices([]); // reset services
+          window.location.reload();
         }
       });
     });
