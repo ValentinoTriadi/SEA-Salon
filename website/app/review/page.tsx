@@ -9,7 +9,7 @@ interface Props {}
 
 const Page: NextPage<Props> = () => {
   return (
-    <div className='w-screen min-h-screen flex flex-col items-center justify-start p-5 md:p-24'>
+    <div className='w-screen min-h-screen flex flex-col items-center justify-start p-5 pt-16 md:pt-24 md:p-24'>
       <Card className='w-fit min-w-[95%] sm:min-w-[90%] md:min-w-[80%] lg:min-w-[50%] xl:min-w-[40%] h-fit'>
         <CardHeader className='text-4xl text-bold'>
           <h1 className='text-3xl md:text-4xl font-semibold'>Review</h1>
