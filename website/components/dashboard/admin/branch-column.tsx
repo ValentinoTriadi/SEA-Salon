@@ -49,6 +49,17 @@ export const BranchColumn: ColumnDef<z.infer<typeof branchTableSchema>>[] = [
     },
   },
   {
+    accessorKey: 'Service',
+    header: 'Services',
+    cell: ({ row }) => {
+      return (
+        <p className='text-wrap break-words'>
+          {row.original.Service.join(', ')}
+        </p>
+      );
+    },
+  },
+  {
     id: 'delete',
     cell: ({ row }) => {
       const id = row.original.id;

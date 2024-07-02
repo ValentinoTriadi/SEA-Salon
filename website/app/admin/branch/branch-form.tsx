@@ -11,16 +11,39 @@ import {
 import { branchSchema } from '@/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '@/components/ui/input';
-import { useTransition } from 'react';
+import { useState, useTransition } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { deleteBranch, postBranch } from '@/action/branch.action';
+import { MultiSelect, MantineProvider } from '@mantine/core';
+import '@mantine/core/styles/Input.css';
+import '@mantine/core/styles/Combobox.css';
+import '@mantine/core/styles/ScrollArea.css';
+import '@mantine/core/styles/PillsInput.css';
+import '@mantine/core/styles/Pill.css';
+import '@mantine/core/styles/Fieldset.css';
+import '@mantine/core/styles/Checkbox.css';
+import '@mantine/core/styles/Card.css';
+import '@mantine/core/styles/CloseButton.css';
+import '@mantine/core/styles/Container.css';
+import '@mantine/core/styles/Flex.css';
+import '@mantine/core/styles/List.css';
+import '@mantine/core/styles/Loader.css';
+import '@mantine/core/styles/Menu.css';
+import '@mantine/core/styles/Popover.css';
+import '@mantine/core/styles/PinInput.css';
+import '@mantine/core/styles/ScrollArea.css';
 
-export const AdminBranchForm = () => {
+interface AdminBranchFormProps {
+  serviceData: string[];
+}
+
+export const AdminBranchForm = ({ serviceData }: AdminBranchFormProps) => {
   // state
   const [isPending, startTransition] = useTransition();
+  const [services, setServices] = useState<string[]>([]);
 
   // form
   const form = useForm({
@@ -30,7 +53,7 @@ export const AdminBranchForm = () => {
       location: '',
       opening: '',
       closing: '',
-      // Service: [],
+      Service: [],
     },
   });
 
@@ -53,6 +76,7 @@ export const AdminBranchForm = () => {
 
   // submit handler
   function onSubmit(value: z.infer<typeof branchSchema>) {
+    value.Service = services;
     startTransition(() => {
       postBranch(value).then((data) => {
         if (data.error) {
@@ -68,6 +92,7 @@ export const AdminBranchForm = () => {
             },
           });
           form.reset();
+          setServices([]); // reset services
         }
       });
     });
@@ -157,6 +182,64 @@ export const AdminBranchForm = () => {
         />
 
         {/* Service Field */}
+        <MantineProvider>
+          <MultiSelect
+            label='Services'
+            className=''
+            color='#1D1D1D'
+            styles={{
+              label: {
+                fontSize: '0.875rem',
+                marginBottom: '0.5rem',
+              },
+              inputField: {
+                fontSize: '0.875rem',
+                color: '#94a3b8',
+              },
+              // section:{},
+              input: {
+                border: '1px solid #292A2E',
+                backgroundColor: 'transparent',
+                borderColor: '#292A2E',
+                borderRadius: '0.5rem',
+                color: 'white',
+              },
+              dropdown: {
+                backgroundColor: '#222325',
+                borderRadius: '0.5rem',
+              },
+              pill: {
+                backgroundColor: '#292A2E',
+                color: 'white',
+                border: '1px solid #292A2E',
+                fontSize: '0.875rem',
+                borderRadius: '0.5rem',
+              },
+              option: {
+                fontSize: '0.875rem',
+              },
+              empty: {
+                fontSize: '0.875rem',
+              },
+            }}
+            size='sm'
+            disabled={isPending}
+            data={serviceData}
+            clearable
+            searchable
+            hidePickedOptions
+            checkIconPosition='right'
+            maxDropdownHeight={100}
+            nothingFoundMessage='Service not found!'
+            placeholder={services.length === 0 ? 'Select service' : ''}
+            comboboxProps={{
+              transitionProps: { transition: 'pop', duration: 200 },
+              dropdownPadding: 10,
+              shadow: 'md',
+            }}
+            onChange={(e) => setServices(e)}
+          />
+        </MantineProvider>
         {/* <FormField
           control={form.control}
           name='Service'

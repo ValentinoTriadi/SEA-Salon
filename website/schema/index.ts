@@ -87,7 +87,7 @@ export const branchSchema = z.object({
       time[1] <= 59
     );
   }),
-  // Service: z.array(z.string()),
+  Service: z.array(z.string()),
 });
 
 export const branchTableSchema = branchSchema.extend({
