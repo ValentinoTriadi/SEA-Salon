@@ -35,6 +35,7 @@ interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   listFilter: string[];
+  FilterColumn: string;
   href?: string;
 }
 
@@ -42,6 +43,7 @@ export function DataTable<TData, TValue>({
   columns,
   data,
   listFilter,
+  FilterColumn,
   href,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
@@ -76,9 +78,11 @@ export function DataTable<TData, TValue>({
         </h1>
         <Select
           onValueChange={(value) =>
-            table.getColumn('service')?.setFilterValue(value)
+            table.getColumn(FilterColumn)?.setFilterValue(value)
           }
-          value={(table.getColumn('service')?.getFilterValue() as string) ?? ''}
+          value={
+            (table.getColumn(FilterColumn)?.getFilterValue() as string) ?? ''
+          }
         >
           <SelectTrigger>
             <SelectValue placeholder='Filter' />
@@ -89,7 +93,7 @@ export function DataTable<TData, TValue>({
                 {s}
               </SelectItem>
             ))}
-            <SelectItem value={'_'}>Clear Filter</SelectItem>
+            <SelectItem value={' '}>Clear Filter</SelectItem>
           </SelectContent>
         </Select>
         {href && (

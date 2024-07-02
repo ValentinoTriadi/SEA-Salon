@@ -37,6 +37,7 @@ export const ReservationHistory = async ({
         columns={reservationColumns}
         data={parsedRes}
         href='/reservation'
+        FilterColumn='service'
         listFilter={services}
       />
     </div>

@@ -2,6 +2,7 @@ import { Separator } from '../../ui/separator';
 import { DataTable } from '../../ui/data-table';
 import { BranchColumn } from './branch-column';
 import { getBranchList } from '@/action/branch.action';
+import { getServiceNameList } from '@/action/service.action';
 
 export const BranchList = async () => {
   const branches = await getBranchList();
@@ -17,6 +18,7 @@ export const BranchList = async () => {
         columns={BranchColumn}
         data={branches}
         href='/admin/branch'
+        FilterColumn='Service'
         listFilter={[]}
       />
     </div>

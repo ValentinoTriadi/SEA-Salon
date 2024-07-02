@@ -17,6 +17,7 @@ export const ServiceList = async () => {
         columns={ServiceColumn}
         data={services}
         href='/admin/service'
+        FilterColumn='name'
         listFilter={[]}
       />
     </div>
