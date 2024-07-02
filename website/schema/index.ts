@@ -63,3 +63,33 @@ export const serviceSchema = z.object({
 export const serviceTableSchema = serviceSchema.extend({
   id: z.string(),
 });
+
+export const branchSchema = z.object({
+  name: z.string(),
+  location: z.string(),
+  opening: z.string().refine((value) => {
+    const time = value.split(':').map((t) => parseInt(t));
+    return (
+      time.length === 2 &&
+      time[0] >= 0 &&
+      time[0] <= 23 &&
+      time[1] >= 0 &&
+      time[1] <= 59
+    );
+  }),
+  closing: z.string().refine((value) => {
+    const time = value.split(':').map((t) => parseInt(t));
+    return (
+      time.length === 2 &&
+      time[0] >= 0 &&
+      time[0] <= 23 &&
+      time[1] >= 0 &&
+      time[1] <= 59
+    );
+  }),
+  Service: z.array(z.string()),
+});
+
+export const branchTableSchema = branchSchema.extend({
+  id: z.string(),
+});

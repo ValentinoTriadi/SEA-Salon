@@ -88,11 +88,14 @@ This project is a web-based application designed to efficiently manage salon ope
 ### Features
 
 * SEA Salon Information
-* Reservation for Salon Services
 * User Reviews
+* Reservation for Salon Services
 * User Dashboard
+  * Profile
+  * Reservation History
 * Admin Dashboard
-* Service Management
+  * Service Management
+  * Branch Management (Integrated with Services)
 * Authentication
 * Middleware for Authentication
 
@@ -146,14 +149,14 @@ Application is deployed on Vercel on [```https://sea-salon-theta.vercel.app/```]
 
 <!-- PROJECT STATUS -->
 ## Project Status
-Project status: _complete_ 
+Project status: _incomplete_ 
 <br/>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ROOM FOR IMPROVEMENT -->
 ## Room for Improvement
 - Improve Interface
-- Add Level 5
+- Advanced Reservation System
 <br/>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

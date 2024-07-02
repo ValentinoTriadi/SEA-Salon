@@ -28,7 +28,7 @@ model Reservation {
   endSession   DateTime
 
   service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Review {
@@ -49,10 +49,20 @@ model User {
 }
 
 model Service {
-  id          String  @id @default(cuid())
+  id          String        @id @default(cuid())
   name        String
   description String?
   duration    Int
   image       String?
   Reservation Reservation[]
+  Branch      Branch[]      @relation("Branch_Service")
+}
+
+model Branch {
+  id       String    @id @default(cuid())
+  name     String
+  location String
+  opening  Int
+  closing  Int
+  Service  Service[] @relation("Branch_Service")
 }

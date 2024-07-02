@@ -1,3 +1,4 @@
+import { BranchList } from './branch-list';
 import { ServiceList } from './service-list';
 
 export const AdminDashboard = async () => {
@@ -7,6 +8,7 @@ export const AdminDashboard = async () => {
         Admin Dashboard
       </h1>
       <ServiceList />
+      <BranchList />
     </div>
   );
 };
