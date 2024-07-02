@@ -81,7 +81,7 @@ export function DataTable<TData, TValue>({
           value={(table.getColumn('service')?.getFilterValue() as string) ?? ''}
         >
           <SelectTrigger>
-            <SelectValue placeholder='Filter Service' />
+            <SelectValue placeholder='Filter' />
           </SelectTrigger>
           <SelectContent>
             {listFilter.map((s, index) => (

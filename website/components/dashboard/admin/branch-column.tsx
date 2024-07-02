@@ -40,7 +40,7 @@ export const BranchColumn: ColumnDef<z.infer<typeof branchTableSchema>>[] = [
         <Button
           variant='table-header'
           size='table-header'
-          onClick={() => column.toggleSorting(column.getIsSorted() === 'desc')}
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
         >
           Closing
           <CaretSortIcon className='w-4 h-4' />
