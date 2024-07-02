@@ -156,7 +156,7 @@ Project status: _incomplete_
 <!-- ROOM FOR IMPROVEMENT -->
 ## Room for Improvement
 - Improve Interface
-- Integrate Branch with Service
+- Advanced Reservation System
 <br/>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
